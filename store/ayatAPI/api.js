@@ -37,6 +37,15 @@ function modules_appointment_service_appointment_sync_create(payload) {
 function modules_appointment_service_appointment_synced_list_retrieve(payload) {
   return ayatAPI.get(`/modules/appointment/service/appointment/synced/list/`)
 }
+function modules_payments_get_payments_history_retrieve(payload) {
+  return ayatAPI.get(`/modules/payments/get_payments_history/`)
+}
+function modules_payments_get_payments_methods_retrieve(payload) {
+  return ayatAPI.get(`/modules/payments/get_payments_methods/`)
+}
+function modules_payments_payment_sheet_create(payload) {
+  return ayatAPI.post(`/modules/payments/payment_sheet/`)
+}
 function rest_auth_login_create(payload) {
   return ayatAPI.post(`/rest-auth/login/`, payload)
 }
@@ -80,6 +89,9 @@ export const apiService = {
   modules_appointment_service_appointment_list_retrieve,
   modules_appointment_service_appointment_sync_create,
   modules_appointment_service_appointment_synced_list_retrieve,
+  modules_payments_get_payments_history_retrieve,
+  modules_payments_get_payments_methods_retrieve,
+  modules_payments_payment_sheet_create,
   rest_auth_login_create,
   rest_auth_logout_create,
   rest_auth_password_change_create,
