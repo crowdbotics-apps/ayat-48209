@@ -62,6 +62,7 @@ This section will show any installed modules you add from the Storyboard Modules
 - [django-google-appointment](backend/modules)
 - [react-native-qr-code](modules/qr-code)
 - [react-native-login](modules/login)
+- [react-native-firebase-crashlytics](modules/firebase-crashlytics)
 
 # Getting started: Frontend
 
