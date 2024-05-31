@@ -13,8 +13,8 @@ class EventsListSerializer(serializers.Serializer):
 class MeetingAttendeesSerializer(serializers.ModelSerializer):
     class Meta:
         model = MeetingAttendees
-        fields = '__all__'
-        read_only_fields = ['id']
+        fields = "__all__"
+        read_only_fields = ["id"]
 
 
 class MeetingSerializer(serializers.ModelSerializer):
@@ -30,8 +30,8 @@ class MeetingSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Meetings
-        fields = '__all__'
-        read_only_fields = ['id']
+        fields = "__all__"
+        read_only_fields = ["id"]
 
     def validate(self, attrs):
         start = attrs.get("start", {})
@@ -48,7 +48,7 @@ class MeetingSerializer(serializers.ModelSerializer):
             "status": attrs.get("status", ""),
             "start": start.get("dateTime"),
             "end": attrs.get("end", {}).get("dateTime"),
-            "timezone": start.get("timeZone")
+            "timezone": start.get("timeZone"),
         }
         return super(MeetingSerializer, self).validate(new_attr)
 
@@ -56,18 +56,20 @@ class MeetingSerializer(serializers.ModelSerializer):
         attendees = validated_data.pop("attendees", [])
 
         instance, created = Meetings.objects.update_or_create(
-            event_id=validated_data.get("event_id"), defaults=validated_data)
+            event_id=validated_data.get("event_id"), defaults=validated_data
+        )
         for attendee in attendees:
             attendee["response_status"] = attendee.pop("responseStatus", "")
-            MeetingAttendees.objects.update_or_create(meeting=instance, email=attendee.get("email"), defaults=attendee)
+            MeetingAttendees.objects.update_or_create(
+                meeting=instance, email=attendee.get("email"), defaults=attendee
+            )
         return instance
 
 
 class MeetingListSerializer(serializers.ModelSerializer):
-    attendees = MeetingAttendeesSerializer(many=True, source='meeting_to_attends')
+    attendees = MeetingAttendeesSerializer(many=True, source="meeting_to_attends")
 
     class Meta:
         model = Meetings
-        fields = '__all__'
-        read_only_fields = ['id']
-        
+        fields = "__all__"
+        read_only_fields = ["id"]

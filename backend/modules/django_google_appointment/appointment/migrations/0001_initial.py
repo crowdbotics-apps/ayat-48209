@@ -5,48 +5,95 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Meetings',
+            name="Meetings",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('event_id', models.CharField(blank=True, max_length=255, null=True)),
-                ('summary', models.TextField(blank=True, null=True)),
-                ('description', models.TextField(blank=True, null=True)),
-                ('event_type', models.CharField(blank=True, max_length=220, null=True)),
-                ('html_link', models.URLField(blank=True, null=True)),
-                ('hangout', models.URLField(blank=True, null=True)),
-                ('start', models.DateTimeField(blank=True, null=True, verbose_name='meeting start time')),
-                ('end', models.DateTimeField(blank=True, null=True, verbose_name='meeting end time')),
-                ('timezone', models.CharField(max_length=255)),
-                ('organizer', models.EmailField(blank=True, max_length=254, null=True, verbose_name="organizer's email")),
-                ('location', models.CharField(blank=True, max_length=220, null=True)),
-                ('status', models.CharField(blank=True, max_length=220, null=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                ("event_id", models.CharField(blank=True, max_length=255, null=True)),
+                ("summary", models.TextField(blank=True, null=True)),
+                ("description", models.TextField(blank=True, null=True)),
+                ("event_type", models.CharField(blank=True, max_length=220, null=True)),
+                ("html_link", models.URLField(blank=True, null=True)),
+                ("hangout", models.URLField(blank=True, null=True)),
+                (
+                    "start",
+                    models.DateTimeField(
+                        blank=True, null=True, verbose_name="meeting start time"
+                    ),
+                ),
+                (
+                    "end",
+                    models.DateTimeField(
+                        blank=True, null=True, verbose_name="meeting end time"
+                    ),
+                ),
+                ("timezone", models.CharField(max_length=255)),
+                (
+                    "organizer",
+                    models.EmailField(
+                        blank=True,
+                        max_length=254,
+                        null=True,
+                        verbose_name="organizer's email",
+                    ),
+                ),
+                ("location", models.CharField(blank=True, max_length=220, null=True)),
+                ("status", models.CharField(blank=True, max_length=220, null=True)),
             ],
             options={
-                'verbose_name_plural': 'Meetings',
+                "verbose_name_plural": "Meetings",
             },
         ),
         migrations.CreateModel(
-            name='MeetingAttendees',
+            name="MeetingAttendees",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('updated_at', models.DateTimeField(auto_now=True)),
-                ('email', models.EmailField(max_length=254, verbose_name="attendee's email")),
-                ('response_status', models.CharField(blank=True, max_length=220, null=True)),
-                ('meeting', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='meeting_to_attends', to='appointment.Meetings')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("updated_at", models.DateTimeField(auto_now=True)),
+                (
+                    "email",
+                    models.EmailField(max_length=254, verbose_name="attendee's email"),
+                ),
+                (
+                    "response_status",
+                    models.CharField(blank=True, max_length=220, null=True),
+                ),
+                (
+                    "meeting",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="meeting_to_attends",
+                        to="appointment.Meetings",
+                    ),
+                ),
             ],
             options={
-                'verbose_name_plural': 'MeetingAttendees',
+                "verbose_name_plural": "MeetingAttendees",
             },
         ),
     ]
