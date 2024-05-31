@@ -64,6 +64,7 @@ This section will show any installed modules you add from the Storyboard Modules
 - [react-native-login](modules/login)
 - [react-native-firebase-crashlytics](modules/firebase-crashlytics)
 - [react-native-live-camera-filters](modules/live-camera-filters)
+- [payments]()
 
 # Getting started: Frontend
 
